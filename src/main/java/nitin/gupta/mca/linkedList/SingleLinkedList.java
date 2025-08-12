@@ -1,8 +1,15 @@
 package nitin.gupta.mca.linkedList;
 
+import java.util.HashSet;
+
 public class SingleLinkedList <T extends Comparable<T>>{
 
+
+
     private Node<T> head ,tail;
+    public Node<T> getHead() {
+        return head;
+    }
 
     public void deleteAtFirst() {
         if(head==null) return ;
@@ -117,6 +124,37 @@ public class SingleLinkedList <T extends Comparable<T>>{
         }
     }
 
+    public void removeDuplicate() {
+
+    }
+
+    public Node<T> removeDuplicate_app1(Node<T> node){
+        HashSet<T> seen = new HashSet<>();
+        Node<T> current = node;
+        Node<T> previous = null;
+        while (current != null) {
+            if (seen.contains(current.data)) {
+                previous.next = current.next;
+            } else {
+                seen.add(current.data);
+                previous = current;
+            }
+            current = current.next;
+        }
+        return node;
+    }
+
+    public void reverseOrder() {
+        Node<T> current =head;
+        Node<T> previous=null ,next =null;
+        while (current!=null){
+            next =current.next;
+            current.next=previous;
+            previous=current;
+            current=next;
+        }
+        head=previous;
+    }
 
 
     static class Node<T extends Comparable<T>>{
@@ -140,6 +178,14 @@ public class SingleLinkedList <T extends Comparable<T>>{
              node= node.next;
          }
      }
+
+    public void print(Node<T> node){
+        System.out.println();
+        while (node!=null){
+            System.out.print(node);
+            node= node.next;
+        }
+    }
      public void addAtFirst(T data){
          Node<T>  node = head;
          Node<T> newNode= new Node<>(data);
@@ -200,6 +246,24 @@ public class SingleLinkedList <T extends Comparable<T>>{
                 return slowPointer;
             }
     }
+
+    public boolean detectCycleInLinkedList(Node<T> node) {
+        if (head == null) {
+            return false;
+        } else {
+            HashSet<Node> visited = new HashSet<Node>();
+            boolean flag = false;
+            Node tmp = head;
+            while (tmp != null) {
+                if (visited.contains(tmp))
+                    return true;
+                visited.add(tmp);
+                tmp = tmp.next;
+            }
+            return false;
+        }
+    }
+
 }
 
 class TestSingleLinkedList{
@@ -225,7 +289,9 @@ class TestSingleLinkedList{
         sll.addAtLast(50);
         sll.addAtLast(60);
         sll.print();
-        sll.deleteDuplicateElement();
+        SingleLinkedList.Node<Integer> node = sll.removeDuplicate_app1(sll.getHead());
+        sll.print(node);
+        sll.reverseOrder() ;
         sll.print();
         /*sll.insertAtPositionFromLast( 55 ,0);
         sll.print();
