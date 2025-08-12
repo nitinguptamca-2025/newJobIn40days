@@ -8,7 +8,8 @@ public class SingleLinkedList <T extends Comparable<T>>{
         if(head==null) return ;
         else {
             Node<T> node =head;
-            Node<T> nodeNext=node.next;
+            Node<T> nodeNext=node.ne\xt;
+
             head=nodeNext;
             node=null;
         }
@@ -116,18 +117,7 @@ public class SingleLinkedList <T extends Comparable<T>>{
         }
     }
 
-    public void deleteDuplicateElement() {
-        if(head==null) return;
-        Node<T> node =head;
-        for (;node!=null ; node=node.next){
-            Node<T>  nodeNext =node.next;
-            for (;nodeNext!=null ; nodeNext=nodeNext.next){
-                if(node.data.compareTo(nodeNext.data)==0){
-                 node.next=node.next.next;
-                }
-            }
-        }
-    }
+
 
     static class Node<T extends Comparable<T>>{
          T data;
