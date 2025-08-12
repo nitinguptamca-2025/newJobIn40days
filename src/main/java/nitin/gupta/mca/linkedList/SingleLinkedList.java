@@ -8,7 +8,7 @@ public class SingleLinkedList <T extends Comparable<T>>{
         if(head==null) return ;
         else {
             Node<T> node =head;
-            Node<T> nodeNext=node.ne\xt;
+            Node<T> nodeNext=node.next;
 
             head=nodeNext;
             node=null;
